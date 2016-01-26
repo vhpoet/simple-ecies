@@ -45,6 +45,18 @@ function hmacSha256(key, msg) {
   return crypto.createHmac("sha256", key).update(msg).digest();
 }
 
+// Compare two buffers in constant time to prevent timing attacks.
+function equalConstTime(b1, b2) {
+  if (b1.length !== b2.length) {
+    return false;
+  }
+  var res = 0;
+  for (var i = 0; i < b1.length; i++) {
+    res |= b1[i] ^ b2[i];  // jshint ignore:line
+  }
+  return res === 0;
+}
+
 /**
  * Derive shared secret for given private and public keys.
  * @param {Buffer} privateKeyA - Sender's private key (32 bytes)
