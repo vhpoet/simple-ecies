@@ -1,7 +1,7 @@
 {
-  "name": "ripple-ecies",
-  "version": "0.1.0",
-  "description": "Ripple elliptic curve cryptography package.",
+  "name": "simple-ecies",
+  "version": "0.1.2",
+  "description": "Elliptic Curve Integrated Encryption Scheme (ECIES) implementation for node.js",
   "keywords": [
     "elliptic",
     "ecies",
@@ -9,10 +9,14 @@
     "ecdsa",
     "crypto",
     "cryptography",
-    "ripple",
     "secp256k1",
     "curve"
   ],
+  "repository":
+  { 
+    "type": "git",
+    "url" : "https://github.com/vhpoet/simple-ecies.git"
+  },
   "licenses": [
     {
       "type": "MIT",
