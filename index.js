@@ -102,4 +102,28 @@ exports.encrypt = function(publicKeyTo, msg, opts) {
   });
 };
 
+/**
+ * Decrypt message using given private key.
+ * @param {Buffer} privateKey - A 32-byte private key of recepient of
+ * the mesage
+ * @param {Ecies} opts - ECIES structure (result of ECIES encryption)
+ * @return {Promise.<Buffer>} - A promise that resolves with the
+ * plaintext on successful decryption and rejects on failure.
+ */
+exports.decrypt = function(privateKey, opts) {
+  return derive(privateKey, opts.ephemPublicKey).then(function(Px) {
+    var hash = sha512(Px);
+    var encryptionKey = hash.slice(0, 32);
+    var macKey = hash.slice(32);
+    var dataToMac = Buffer.concat([
+      opts.iv,
+      opts.ephemPublicKey,
+      opts.ciphertext
+    ]);
+    var realMac = hmacSha256(macKey, dataToMac);
+    assert(equalConstTime(opts.mac, realMac), "Bad MAC");
+    return aes256CbcDecrypt(opts.iv, encryptionKey, opts.ciphertext);
+  });
+};
+
 exports.publicKeyConvert = secp256k1.publicKeyConvert;
