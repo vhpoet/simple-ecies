@@ -1,0 +1,30 @@
+{
+  "name": "ripple-ecies",
+  "version": "0.1.0",
+  "description": "Ripple elliptic curve cryptography package.",
+  "keywords": [
+    "elliptic",
+    "ecies",
+    "ecdh",
+    "ecdsa",
+    "crypto",
+    "cryptography",
+    "ripple",
+    "secp256k1",
+    "curve"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.1.4",
+    "secp256k1": "^2.0.7"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  }
+}
